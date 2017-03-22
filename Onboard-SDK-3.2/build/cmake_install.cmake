@@ -1,4 +1,4 @@
-# Install script for directory: /home/duduche/Documents/mfe/Onboard-SDK-3.2
+# Install script for directory: /home/pi/Documents/mfe/Onboard-SDK-3.2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,11 +34,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/cmake_install.cmake")
-  include("/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/cmake_install.cmake")
-  include("/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/cmake_install.cmake")
-  include("/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/sample/Linux/Non-Blocking/cmake_install.cmake")
-  include("/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/sample/Linux/Blocking/cmake_install.cmake")
+  include("/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/cmake_install.cmake")
+  include("/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/cmake_install.cmake")
+  include("/home/pi/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/cmake_install.cmake")
+  include("/home/pi/Documents/mfe/Onboard-SDK-3.2/build/sample/Linux/Non-Blocking/cmake_install.cmake")
+  include("/home/pi/Documents/mfe/Onboard-SDK-3.2/build/sample/Linux/Blocking/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

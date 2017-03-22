@@ -25,7 +25,7 @@ boost::thread workerThread1;
 boost::thread workerThread2;
 #endif
 
-int setup(LinuxSerialDevice* serialDevice, CoreAPI* api, LinuxThread* read,LinuxThread* data,LinuxThread* key, std::string userConfigPath)
+int setup(LinuxSerialDevice* serialDevice, CoreAPI* api, LinuxThread* read,LinuxThread* data,LinuxThread* key,LinuxThread* radio, std::string userConfigPath)
 {
   //! Configuration parsing
   int configStatus = parseUserConfig(userConfigPath);
@@ -52,6 +52,7 @@ int setup(LinuxSerialDevice* serialDevice, CoreAPI* api, LinuxThread* read,Linux
   read->createThread();
   data->createThread(); // start data thread
   key->createThread();
+  radio->createThread(); //start radio thread
 
   //! Validate the serial connection
   #ifdef __x86_64__

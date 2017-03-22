@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
   LinuxThread radio(api,flight,6);  // create thread to control radio
 
   //! Setup
-  int setupStatus = setup(serialDevice, api, &read,&data,&key);
+  int setupStatus = setup(serialDevice, api, &read,&data,&key, &radio);
   if (setupStatus == -1)
   {
     std::cout << "This program will exit now. \n";

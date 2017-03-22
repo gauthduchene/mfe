@@ -217,7 +217,7 @@ pos=flight2 -> getPosition();
         curPosition =flight2 -> getPosition();
 curEuler = Flight::toEulerAngle(q);
     localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-         std::cout<< "la valeur de la position dans le thread:" << curLocalOffset.x << "\n" ;
+        // std::cout<< "la valeur de la position dans le thread:" << curLocalOffset.x << "\n" ;
 	//gps=flight -> 
 	// rtk
 	//rc	
@@ -241,6 +241,6 @@ void *LinuxThread::radio(void *param)
 {
   while(true)
   {
-    
+    std::cout<< " on est dans le thread de la radio et c'est trop chouette \n ";
   }
 }

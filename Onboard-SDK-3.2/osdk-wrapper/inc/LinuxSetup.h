@@ -31,7 +31,7 @@ typedef struct ackReturnToMobile{
   uint16_t ack;
 } ackReturnToMobile;
 
-int setup(LinuxSerialDevice* serialDevice, CoreAPI* api, LinuxThread* read,LinuxThread* data,LinuxThread* key, std::string userConfigPath = UserConfig::defaultUserConfigPath);
+int setup(LinuxSerialDevice* serialDevice, CoreAPI* api, LinuxThread* read,LinuxThread* data,LinuxThread* key,LinuxThread* radio, std::string userConfigPath = UserConfig::defaultUserConfigPath);
 bool validateSerialDevice(LinuxSerialDevice* serialDevice, CoreAPI* api);
 int parseUserConfig(std::string userConfigPath = UserConfig::defaultUserConfigPath);
 ackReturnData activate(CoreAPI* api);
