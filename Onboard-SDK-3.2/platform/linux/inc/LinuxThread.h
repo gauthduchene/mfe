@@ -50,6 +50,7 @@ class LinuxThread
     static void *callback_call(void *param);
    static void *save_data(void *param);
     static void *key_call(void *param);
+    static void *radio(void *param);
 
 };
 

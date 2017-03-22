@@ -94,6 +94,12 @@ bool LinuxThread::createThread()
     infoStr = "keyPoll";
   }
   
+   else if (6==type)
+  {
+    ret = pthread_create(&threadID, NULL, radio, (void*)api);
+    infoStr = "radio";
+  }
+  
   
   else
   {
@@ -224,6 +230,14 @@ curEuler = Flight::toEulerAngle(q);
 }
 }
 void *LinuxThread::key_call(void *param)
+{
+  while(true)
+  {
+    
+  }
+}
+
+void *LinuxThread::radio(void *param)
 {
   while(true)
   {

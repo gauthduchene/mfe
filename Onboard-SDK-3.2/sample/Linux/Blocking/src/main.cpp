@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
   LinuxThread read(api,flight, 2);
   LinuxThread data(api,flight, 4); // create thread for save data
   LinuxThread key(api,flight, 5);
+  LinuxThread radio(api,flight,6);  // create thread to control radio
 
   //! Setup
   int setupStatus = setup(serialDevice, api, &read,&data,&key);
