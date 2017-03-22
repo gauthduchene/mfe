@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking
+# Install script for directory: /home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

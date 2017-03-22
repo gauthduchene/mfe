@@ -272,11 +272,11 @@ LinuxFlight.h
 LinuxWaypoint.h
 ../sample/Linux/Non-Blocking/inc/LinuxWaypoint.h
 
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.cpp
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.cpp
 LinuxInteractiveNonBlocking.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.h
 
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/main.cpp
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/main.cpp
 iostream
 -
 string
@@ -286,23 +286,23 @@ cstring
 unistd.h
 -
 LinuxSerialDevice.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxSerialDevice.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxSerialDevice.h
 LinuxThread.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxThread.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxThread.h
 LinuxSetup.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxSetup.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxSetup.h
 LinuxCleanup.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxCleanup.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxCleanup.h
 ReadUserConfig.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/ReadUserConfig.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/ReadUserConfig.h
 LinuxMobile.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxMobile.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxMobile.h
 LinuxFlight.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxFlight.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxFlight.h
 LinuxInteractiveNonBlocking.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxInteractiveNonBlocking.h
 LinuxWaypoint.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxWaypoint.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Non-Blocking/src/LinuxWaypoint.h
 DJI_Follow.h
 -
 DJI_Flight.h

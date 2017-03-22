@@ -286,11 +286,11 @@ DJI_API.h
 DJI_Flight.h
 -
 
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.cpp
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.cpp
 LinuxInteractive.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.h
 
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/main.cpp
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/main.cpp
 iostream
 -
 fstream
@@ -306,25 +306,25 @@ fstream
 stdio.h
 -
 LinuxSerialDevice.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxSerialDevice.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxSerialDevice.h
 LinuxThread.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxThread.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxThread.h
 LinuxSetup.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxSetup.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxSetup.h
 LinuxCleanup.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxCleanup.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxCleanup.h
 ReadUserConfig.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/ReadUserConfig.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/ReadUserConfig.h
 LinuxMobile.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxMobile.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxMobile.h
 LinuxFlight.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxFlight.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxFlight.h
 LinuxInteractive.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxInteractive.h
 LinuxWaypoint.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxWaypoint.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxWaypoint.h
 LinuxCamera.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxCamera.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxCamera.h
 DJI_Follow.h
 -
 DJI_Flight.h
@@ -334,7 +334,7 @@ DJI_Version.h
 DJI_WayPoint.h
 -
 
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/thread.cpp
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/thread.cpp
 thread.h
-/home/pi/Desktop/Onboard-SDK-3.2/sample/Linux/Blocking/src/thread.h
+/home/duduche/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/thread.h
 

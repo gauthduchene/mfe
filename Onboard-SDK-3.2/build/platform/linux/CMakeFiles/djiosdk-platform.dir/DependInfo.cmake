@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/Desktop/Onboard-SDK-3.2/platform/linux/src/LinuxSerialDevice.cpp" "/home/pi/Desktop/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/src/LinuxSerialDevice.cpp.o"
-  "/home/pi/Desktop/Onboard-SDK-3.2/platform/linux/src/LinuxThread.cpp" "/home/pi/Desktop/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/src/LinuxThread.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/platform/linux/src/LinuxSerialDevice.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/src/LinuxSerialDevice.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/platform/linux/src/LinuxThread.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/src/LinuxThread.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/pi/Desktop/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/DependInfo.cmake"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

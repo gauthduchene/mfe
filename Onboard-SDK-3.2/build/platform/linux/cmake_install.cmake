@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/Desktop/Onboard-SDK-3.2/platform/linux
+# Install script for directory: /home/duduche/Documents/mfe/Onboard-SDK-3.2/platform/linux
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

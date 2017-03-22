@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/djiosdk-platform.dir/src/LinuxSerialDevice.cpp.o"
   "CMakeFiles/djiosdk-platform.dir/src/LinuxThread.cpp.o"
+  "CMakeFiles/djiosdk-platform.dir/src/LinuxSerialDevice.cpp.o"
   "../../libs/libdjiosdk-platform.pdb"
   "../../libs/libdjiosdk-platform.a"
 )
