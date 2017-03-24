@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/djiosdk-linux-sample.dir/src/LinuxInteractive.cpp.o"
-  "CMakeFiles/djiosdk-linux-sample.dir/src/main.cpp.o"
   "CMakeFiles/djiosdk-linux-sample.dir/src/thread.cpp.o"
+  "CMakeFiles/djiosdk-linux-sample.dir/src/main.cpp.o"
+  "CMakeFiles/djiosdk-linux-sample.dir/src/LinuxInteractive.cpp.o"
   "../../../bin/djiosdk-linux-sample.pdb"
   "../../../bin/djiosdk-linux-sample"
 )

@@ -26,6 +26,29 @@ if (USE_PRECISION_MISSIONS)
   include_directories("${precision_missions_source_dir}/dependencies/csv")
 endif()
 
+
+
+# Shared library case: All we need to do is link against the library, and
+# anything else we need (in this case, some Boost libraries):
+if(NOT UHD_USE_STATIC_LIBS)
+    message(STATUS "Linking against shared UHD library.")
+    target_link_libraries(${PROJECT_NAME} ${UHD_LIBRARIES} ${Boost_LIBRARIES})
+# Shared library case: All we need to do is link against the library, and
+# anything else we need (in this case, some Boost libraries):
+else(NOT UHD_USE_STATIC_LIBS)
+    message(STATUS "Linking against static UHD library.")
+    target_link_libraries(${PROJECT_NAME}
+        # We could use ${UHD_LIBRARIES}, but linking requires some extra flags,
+        # so we use this convenience variable provided to us
+        ${UHD_STATIC_LIB_LINK_FLAG}
+        # Also, when linking statically, we need to pull in all the deps for
+        # UHD as well, because the dependencies don't get resolved automatically
+        ${UHD_STATIC_LIB_DEPS}
+    )
+endif(NOT UHD_USE_STATIC_LIBS)
+
+
+
 FILE(GLOB SOURCE_FILES inc/*.h src/*.cpp)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
