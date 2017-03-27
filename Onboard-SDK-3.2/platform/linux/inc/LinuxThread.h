@@ -33,11 +33,11 @@ class LinuxThread
   public:
     LinuxThread();
  
-    LinuxThread(CoreAPI *api,Flight *FLIGHT, int type);
+    LinuxThread(CoreAPI *api,Flight *FLIGHT,int argc2,char* argv2[], int type);
 
     bool createThread();
     int stopThread();
-
+    int UHD_SAFE_MAIN(int argc, char *argv[]);
   private:
     CoreAPI *api;
     Flight *FLIGHT;

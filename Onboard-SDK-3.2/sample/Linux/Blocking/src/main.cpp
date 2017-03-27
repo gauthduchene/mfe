@@ -56,16 +56,18 @@ ofstream myfile;
 //! Main function for the Linux sample. Lightweight. Users can call their own API calls inside the Programmatic Mode else on Line 68. 
 int main(int argc, char *argv[])
 {
+	
+	
   //! Instantiate a serialDevice, an API object, flight and waypoint objects and a read thread.
   LinuxSerialDevice* serialDevice = new LinuxSerialDevice(UserConfig::deviceName, UserConfig::baudRate);
   api = new CoreAPI(serialDevice);
   flight = new Flight(api);
   WayPoint* waypointObj = new WayPoint(api);
   Camera* camera = new Camera(api);
-  LinuxThread read(api,flight, 2);
-  LinuxThread data(api,flight, 4); // create thread for save data
-  LinuxThread key(api,flight, 5);
-  LinuxThread radio(api,flight,6);  // create thread to control radio
+  LinuxThread read(api,flight,argc,argv, 2);
+  LinuxThread data(api,flight,argc,argv, 4); // create thread for save data
+  LinuxThread key(api,flight,argc,argv, 5);
+  LinuxThread radio(api,flight,argc,argv,6);  // create thread to control radio
 
   //! Setup
   int setupStatus = setup(serialDevice, api, &read,&data,&key, &radio);
