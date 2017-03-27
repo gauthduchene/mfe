@@ -118,109 +118,109 @@ DJI_Mission.h
 stdexcept
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.cpp
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 string.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.cpp
 string.h
 -
 stdio.h
 -
 DJI_App.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.h
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 devApp.cpp
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/devApp.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/devApp.cpp
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.cpp
 DJI_Camera.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.cpp
 DJI_Codec.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.h
 DJI_Link.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.cpp
 DJI_Flight.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.h
 string.h
 -
 math.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.cpp
 DJI_Follow.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.cpp
 DJI_HardDriver.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.cpp
 DJI_HotPoint.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.h
 string.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.cpp
 stdio.h
 -
 string.h
 -
 DJI_Link.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
 DJI_Codec.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.h
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 DJI_Logging.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.cpp
 DJI_Logging.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.h
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 DJI_Link.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.h
 DJI_Type.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Type.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Type.h
 pthread.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.cpp
 stdio.h
 -
 string.h
 -
 DJI_Memory.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.h
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.cpp
 DJI_API.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.h
 DJI_Mission.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.h
 string.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.cpp
 DJI_VirtualRC.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.cpp
 DJI_WayPoint.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.h
 string.h
 -
 
