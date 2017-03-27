@@ -259,13 +259,9 @@ void *LinuxThread::key_call(void *param)
 void *LinuxThread::radio(void *param)
 { 
   while(true)
-  {uhd::set_thread_priority_safe();
-    
-        
-    std::cout<< " la valeur de argc et argv[]  dans le thread "<< argc <<std::endl;
-    for (int i = 0; i < argc; ++i) {
-        std::cout << "dans la boucle for  "<< argv[i] << std::endl;
-    }
+  {
+	  
+	uhd::set_thread_priority_safe();
     //variables to be set by po
     std::string args;
     std::string wire;
