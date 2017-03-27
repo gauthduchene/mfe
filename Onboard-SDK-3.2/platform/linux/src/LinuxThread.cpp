@@ -51,7 +51,8 @@
 #include <DJI_Version.h>
 #include <DJI_WayPoint.h>
 
-
+int argc;
+char* argv[4];
 Flight* flight2;
 namespace po = boost::program_options;
 
@@ -61,13 +62,17 @@ LinuxThread::LinuxThread()
     type = 0;
 }
 
-LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT, int Type)
+LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,int argc2, char* argv2[], int Type)
 {
   api = API;
   flight2=FLIGHT;
   type = Type;
   api->stopCond = false;
-
+  argc = argc2;
+  argv[0] = argv2[0];
+  argv[1] = argv2[1];
+  argv[2] = argv2[2];
+  argv[3] = argv2[3];
 }
 
 bool LinuxThread::createThread()
@@ -254,9 +259,13 @@ void *LinuxThread::key_call(void *param)
 void *LinuxThread::radio(void *param)
 {
   while(true)
-  {
-    uhd::set_thread_priority_safe();
-
+  {uhd::set_thread_priority_safe();
+    
+        
+    std::cout<< " la valeur de argc et argv[]  dans le thread "<< argc <<std::endl;
+    for (int i = 0; i < argc; ++i) {
+        std::cout << "dans la boucle for  "<< argv[i] << std::endl;
+    }
     //variables to be set by po
     std::string args;
     std::string wire;
@@ -278,13 +287,13 @@ void *LinuxThread::radio(void *param)
         ("channels", po::value<std::string>(&channel_list)->default_value("0"), "which channel(s) to use (specify \"0\", \"1\", \"0,1\", etc)")
     ;
     po::variables_map vm;
-    //po::store(po::parse_command_line(argc, argv, desc), vm);
+    po::store(po::parse_command_line(argc, argv, desc), vm);
     po::notify(vm);
 
     //print the help message
     if (vm.count("help")){
         std::cout << boost::format("UHD RX Timed Samples %s") % desc << std::endl;
-        break;
+        
     }
 
     bool verbose = vm.count("dilv") == 0;
@@ -373,6 +382,7 @@ void *LinuxThread::radio(void *param)
     //finished
     std::cout << std::endl << "Done!" << std::endl << std::endl;
 
-
-  }
+ 
 }
+}
+
