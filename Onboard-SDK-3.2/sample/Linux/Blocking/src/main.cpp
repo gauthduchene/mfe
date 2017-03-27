@@ -263,7 +263,7 @@ std::cout << " value of done : " << done << "\n";
 
 
 
-void *LinuxThread::save_data (void *param) {
+void *Linux::save_data (void *param) {
 int i=0;
 int blockingTimeout = 1; 
   unsigned short dataFlag;

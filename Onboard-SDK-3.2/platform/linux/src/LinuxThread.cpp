@@ -52,7 +52,7 @@
 #include <DJI_WayPoint.h>
 
 int argc;
-char* argv[4];
+char* argv[3];
 Flight* flight2;
 namespace po = boost::program_options;
 
@@ -70,9 +70,9 @@ LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,int argc2, char* argv2[], i
   api->stopCond = false;
   argc = argc2;
   argv[0] = argv2[0];
-  argv[1] = argv2[1];
-  argv[2] = argv2[2];
-  argv[3] = argv2[3];
+  argv[1] = argv2[2];
+  argv[2] = argv2[3];
+
 }
 
 bool LinuxThread::createThread()
@@ -257,7 +257,7 @@ void *LinuxThread::key_call(void *param)
 }
 
 void *LinuxThread::radio(void *param)
-{
+{ 
   while(true)
   {uhd::set_thread_priority_safe();
     
@@ -384,5 +384,6 @@ void *LinuxThread::radio(void *param)
 
  
 }
+
 }
 
