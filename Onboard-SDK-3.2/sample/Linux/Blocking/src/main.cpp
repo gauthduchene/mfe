@@ -51,7 +51,7 @@ using namespace DJI::onboardSDK;
 CoreAPI* api;
 Flight* flight;
 int c;
-ofstream myfile;
+//ofstream myfile;
 
 //! Main function for the Linux sample. Lightweight. Users can call their own API calls inside the Programmatic Mode else on Line 68. 
 int main(int argc, char *argv[])
@@ -254,7 +254,7 @@ std::cout << " value of done : " << done << "\n";
     return 0;
   }
   std::cout << "Program exited successfully." << std::endl;
-  myfile.close();
+  //myfile.close();
   return 0;
 }
 
