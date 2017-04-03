@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCamera.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxCamera.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxCleanup.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxFlight.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxMobile.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxSetup.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxWaypoint.cpp.o"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/ReadUserConfig.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCamera.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxCamera.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxCleanup.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxFlight.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxMobile.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxSetup.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/LinuxWaypoint.cpp.o"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-wrapper/CMakeFiles/djiosdk-wrapper.dir/src/ReadUserConfig.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -25,8 +25,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/DependInfo.cmake"
-  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/DependInfo.cmake"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/DependInfo.cmake"
+  "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/platform/linux/CMakeFiles/djiosdk-platform.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

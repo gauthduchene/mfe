@@ -133,59 +133,93 @@ int main(int argc, char *argv[])
     int currentValueZ;
     int currentValueYAW;
     int done=0;
-    int tour=0;
-    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-    char inputchar;
-    ackReturnData takeControlStatus;
-    ackReturnData releaseControlStatus;
-    ackReturnData takeoff;
-    ackReturnData land ;
-    Angle yaw;
-    yaw=flight->getYaw();
-    while (tour==0){
-    
-    std::cout << " please enter a letter. a for take control, n for a tour, l for a line, t for takeoff and x for landing " << std::endl;
-     cin >> inputchar;	
-
-switch (inputchar)
-    {
-	  case 'a':
-        takeControlStatus = takeControl(api);
-        break;	
-      case 'n':
-      yaw=flight->getYaw();
-      cout << "avant le while   " << yaw<<endl;
-       while( yaw < 2.8 ) {
-        int status1=moveWithVelocity(api,flight,0,0,0, 15 ,1500, 3, 0.1);
-        
-		yaw=flight->getYaw();
-		
-	} 
-	cout << " apres le while     " << yaw<< endl;
-        break;
-      case 'l':
-        while(curLocalOffset.x<3 ){
+localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+std::cout << " please enter a letter. n for a tour, l for a line and x for landing " << std::endl;
+std::cout<< "la valeur de la position :" << curLocalOffset.x << "\n" ;
+  	while(curLocalOffset.x<3 && done==0){
 		int status1=moveWithVelocity(api,flight,speedX,0,0,0 ,1500, 3, 0.1);
 		curPosition = api->getBroadcastData().pos;
   	curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
     localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-   }
-        break;
-      case 't':
-         takeoff = monitoredTakeoff(api, flight, blockingTimeout);
-        break;
-      case 'x':
-         land = landing(api, flight,blockingTimeout);
-        tour=1;
-        break;
-      case 'r':
-       releaseControlStatus = releaseControl(api);
-       break;
+
+     if('a'==putchar(c)){
+ 		std::cout<<"parti pour 5 secondes stationnaires";           
+		int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);	   
+	  	usleep(5000000);
+	   	std::cout<<"fin des 5 secondes";
+	   	done=1;
+        }
+        else if('q'==putchar(c)){
+           int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0); //roll,pitch,yaw
+	   ackReturnData landingStatus = landing(api, flight,blockingTimeout);
+	  std::cout<<"fin atterissage urgence\n";
+	   done=1;
+        }
+	}
+while(curLocalOffset.y<3 && done==0){
+		int status1=moveWithVelocity(api,flight,0,speedY,0,0 ,1500, 3, 0.1);
+		curPosition = api->getBroadcastData().pos;
+  	curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+     if('a'==putchar(c)){
+ 		std::cout<<"parti pour 5 secondes stationnaires";           
+		int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);	   
+	  	usleep(5000000);
+	   	std::cout<<"fin des 5 secondes";
+	   	done=1;
+        }
+        else if('q'==putchar(c)){
+           int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0); //roll,pitch,yaw
+	   ackReturnData landingStatus = landing(api, flight,blockingTimeout);
+	  std::cout<<"fin atterissage urgence\n";
+	   done=1;
+        }
+	}
+ moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);
+ while(curLocalOffset.x>0 && done==0){
+		int status1=moveWithVelocity(api,flight,-speedX,0,0,0 ,1500, 3, 0.1);
+		curPosition = api->getBroadcastData().pos;
+  	curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+     if('a'==putchar(c)){
+ 		std::cout<<"parti pour 5 secondes stationnaires";           
+		int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);   
+	  	usleep(5000000);
+	   	std::cout<<"fin des 5 secondes";
+	   	done=1;
+        }
+        else if('q'==putchar(c)){
+           int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);
+	   ackReturnData landingStatus = landing(api, flight,blockingTimeout);
+	  std::cout<<"fin atterissage urgence\n";
+	   done=1;
+        }
+	}
+while(curLocalOffset.y>0 && done==0){
+		int status1=moveWithVelocity(api,flight,0,-speedY,0,0 ,1500, 3, 0.1);
+		curPosition = api->getBroadcastData().pos;
+  	curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+     if('a'==putchar(c)){
+ 		std::cout<<"parti pour 5 secondes stationnaires";           
+		int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);   
+	  	usleep(5000000);
+	   	std::cout<<"fin des 5 secondes";
+	   	done=1;
+        }
+        else if('q'==putchar(c)){
+           int ackStat=moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);
+	   ackReturnData landingStatus = landing(api, flight,blockingTimeout);
+	  std::cout<<"fin atterissage urgence\n";
+	   done=1;
+        }
+	}
+ moveWithVelocity(api, flight, 0, 0, 0, 0, 2000, 0,0);
+std::cout << " value of done : " << done << "\n";
+	std::cout << " apres le move\n";
       //! Do aircraft control - Waypoint example. 
      // wayPointMissionExample(api, waypointObj,blockingTimeout);
-	}
-	
-}
+
       //! Land
       ackReturnData landingStatus = landing(api, flight,blockingTimeout);
     }

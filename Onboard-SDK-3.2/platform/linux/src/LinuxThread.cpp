@@ -223,7 +223,7 @@ usleep(500000);
  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
 
 	myfile.open ("test.csv");
-	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,\n";
+	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,\n";
 pos=flight2 -> getPosition();
     while (i<100){
         q=flight2   -> getQuaternion();
@@ -351,10 +351,10 @@ void *LinuxThread::radio(void *param)
     uhd::rx_streamer::sptr rx_stream = usrp->get_rx_stream(stream_args);
 while(1) { 
     //setup streaming
-    std::cout << std::endl;
-    std::cout << boost::format(
-        "Begin streaming %u samples, %f seconds in the future..."
-    ) % total_num_samps % seconds_in_future << std::endl;
+  //  std::cout << std::endl;
+  //  std::cout << boost::format(
+  //      "Begin streaming %u samples, %f seconds in the future..."
+ //   ) % total_num_samps % seconds_in_future << std::endl;
     uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
     stream_cmd.num_samps = total_num_samps;
     stream_cmd.stream_now = false;
@@ -396,9 +396,9 @@ while(1) {
             ) % md.strerror()));
         }
 
-        if(verbose) std::cout << boost::format(
-            "Received packet: %u samples, %u full secs, %f frac secs"
-        ) % num_rx_samps % md.time_spec.get_full_secs() % md.time_spec.get_frac_secs() << std::endl;
+       // if(verbose) std::cout << boost::format(
+       //     "Received packet: %u samples, %u full secs, %f frac secs"
+       // ) % num_rx_samps % md.time_spec.get_full_secs() % md.time_spec.get_frac_secs() << std::endl;
 
         num_acc_samps += num_rx_samps;
     }
@@ -409,7 +409,7 @@ while(1) {
     std::cout << std::endl << "Done!" << std::endl << std::endl;
     seconds_in_future = seconds_in_future +0.1;
 }
-   
+  
 }
 
 }
