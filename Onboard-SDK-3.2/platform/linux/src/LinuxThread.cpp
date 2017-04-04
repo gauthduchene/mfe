@@ -57,6 +57,8 @@ Flight* flight2;
 namespace po = boost::program_options;
 using namespace std;
 ofstream myfile;
+float* secondPointer;
+int* numberTest;
 
 LinuxThread::LinuxThread()
 {
@@ -64,7 +66,7 @@ LinuxThread::LinuxThread()
     type = 0;
 }
 
-LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,int argc2, char* argv2[], int Type)
+LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,int argc2, char* argv2[], int Type)
 {
   api = API;
   flight2=FLIGHT;
@@ -74,7 +76,8 @@ LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,int argc2, char* argv2[], i
   argv[0] = argv2[0];
   argv[1] = argv2[2];
   argv[2] = argv2[3];
-
+  secondPointer=pointerRadio;
+  numberTest=number;
 }
 
 bool LinuxThread::createThread()
@@ -223,9 +226,9 @@ usleep(500000);
  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
 
 	myfile.open ("test.csv");
-	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,\n";
+	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, radio value,\n";
 pos=flight2 -> getPosition();
-    while (i<100){
+    while (1){
         q=flight2   -> getQuaternion();
         v=flight2   -> getVelocity();
         pos=flight2 -> getPosition();
@@ -243,10 +246,10 @@ curEuler = Flight::toEulerAngle(q);
 	// rtk
 	//rc	
 
-	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<",\n";
+	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
 
 	i=i+1;
-	usleep(500000);
+	usleep(5000);
   }
 }
 }
@@ -275,7 +278,7 @@ void *LinuxThread::radio(void *param)
     double freq;
     double gain;
     double norm;
-
+    *secondPointer=12545;
     //setup the program options
     po::options_description desc("Allowed options");
     desc.add_options()
@@ -384,10 +387,10 @@ while(1) {
 		    avg=avg+norm;
 		}
 		avg=avg/1000;
-		std::cout<<" valeur de la moyenne   " << avg<<std::endl;
+		//std::cout<<" valeur de la moyenne   " << avg<<std::endl;
         //use a small timeout for subsequent packets
         timeout = 0.1;
-
+		*secondPointer=avg;
         //handle the error code
         if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
         if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
@@ -406,7 +409,7 @@ while(1) {
     if (num_acc_samps < total_num_samps) std::cerr << "Receive timeout before all samples received..." << std::endl;
 
     //finished
-    std::cout << std::endl << "Done!" << std::endl << std::endl;
+    //std::cout << std::endl << "Done!" << std::endl << std::endl;
     seconds_in_future = seconds_in_future +0.1;
 }
   

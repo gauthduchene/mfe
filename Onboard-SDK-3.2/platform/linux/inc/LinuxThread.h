@@ -33,7 +33,7 @@ class LinuxThread
   public:
     LinuxThread();
  
-    LinuxThread(CoreAPI *api,Flight *FLIGHT,int argc2,char* argv2[], int type);
+    LinuxThread(CoreAPI *api,Flight *FLIGHT,float *pointerRadio,int *pointerNumber,int argc2,char* argv2[], int type);
 
     bool createThread();
     int stopThread();

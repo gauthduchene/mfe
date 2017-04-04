@@ -305,6 +305,8 @@ fstream
 -
 stdio.h
 -
+math.h
+-
 LinuxSerialDevice.h
 /home/pi/Documents/mfe/Onboard-SDK-3.2/sample/Linux/Blocking/src/LinuxSerialDevice.h
 LinuxThread.h
