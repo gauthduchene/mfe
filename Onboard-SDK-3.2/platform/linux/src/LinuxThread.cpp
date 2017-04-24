@@ -52,13 +52,14 @@
 #include <DJI_WayPoint.h>
 
 int argc;
-char* argv[3];
+char* argv[7];
 Flight* flight2;
 namespace po = boost::program_options;
 using namespace std;
 ofstream myfile;
 float* secondPointer;
 int* numberTest;
+string nameFile;
 
 LinuxThread::LinuxThread()
 {
@@ -66,7 +67,7 @@ LinuxThread::LinuxThread()
     type = 0;
 }
 
-LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,int argc2, char* argv2[], int Type)
+LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,string extension,int argc2, char* argv2[], int Type)
 {
   api = API;
   flight2=FLIGHT;
@@ -76,8 +77,13 @@ LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* nu
   argv[0] = argv2[0];
   argv[1] = argv2[2];
   argv[2] = argv2[3];
+  argv[3] = argv2[4];
+  argv[4] = argv2[5];
+  argv[5] = argv2[6];
+  argv[6] = argv2[7];
   secondPointer=pointerRadio;
   numberTest=number;
+  nameFile=extension;
 }
 
 bool LinuxThread::createThread()
@@ -224,12 +230,13 @@ usleep(500000);
 
 	originPosition = curPosition;
  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-
-	myfile.open ("test.csv");
+    string fullName = "log"+nameFile;
+	myfile.open (fullName);
 	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, radio value,\n";
 pos=flight2 -> getPosition();
     while (1){
         q=flight2   -> getQuaternion();
+       // timeStamp =api2 -> getBroadcastData().timeStamp;
         v=flight2   -> getVelocity();
         pos=flight2 -> getPosition();
 	acc=flight2 -> getAcceleration();
@@ -246,7 +253,7 @@ curEuler = Flight::toEulerAngle(q);
 	// rtk
 	//rc	
 
-	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
+	myfile <<","<<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
 
 	i=i+1;
 	usleep(5000);

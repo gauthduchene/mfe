@@ -63,20 +63,30 @@ int number=0;
 //! Main function for the Linux sample. Lightweight. Users can call their own API calls inside the Programmatic Mode else on Line 68. 
 int main(int argc, char *argv[])
 {
-	
-	pointerRadio = &radioValue;
-	pointerNumber = &number;
-  //! Instantiate a serialDevice, an API object, flight and waypoint objects and a read thread.
+	  //! Instantiate a serialDevice, an API object, flight and waypoint objects and a read thread.
   LinuxSerialDevice* serialDevice = new LinuxSerialDevice(UserConfig::deviceName, UserConfig::baudRate);
+  //cout << " valeur choisie deuxieme " << name<<endl;
   api = new CoreAPI(serialDevice);
   flight = new Flight(api);
   WayPoint* waypointObj = new WayPoint(api);
   Camera* camera = new Camera(api);
-  LinuxThread read(api,flight,pointerRadio,pointerNumber,argc,argv, 2);
-  LinuxThread data(api,flight,pointerRadio,pointerNumber,argc,argv, 4); // create thread for save data
-  LinuxThread key(api,flight,pointerRadio,pointerNumber,argc,argv, 5);
-  LinuxThread radio(api,flight,pointerRadio,pointerNumber,argc,argv,6);  // create thread to control radio
- fileRadio.open("valueFromRadio.csv");
+  float32_t radialSpeed;
+	cout << " Yaw rate desired ? : " << endl;
+	cin >> radialSpeed;
+	cout << " name desired " << endl;
+	string name;
+	cin >> name;
+	
+	string extension= name+".csv";
+	pointerRadio = &radioValue;
+	pointerNumber = &number;
+	fileRadio.open(extension);
+    
+  LinuxThread read(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 2);
+  LinuxThread data(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 4); // create thread for save data
+  LinuxThread key(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 5);
+  LinuxThread radio(api,flight,pointerRadio,pointerNumber,extension,argc,argv,6);  // create thread to control radio
+ 
   //! Setup
   int setupStatus = setup(serialDevice, api, &read,&data,&key, &radio);
   if (setupStatus == -1)
@@ -154,9 +164,22 @@ int main(int argc, char *argv[])
     yaw=flight->getYaw();
     int quarter=0;
     fileRadio << "Number" <<","<<"yaw"  <<","<< "radioValue" <<","<< "Position x"  <<","<< "Position y"  <<","<< "Position z"<<"\n";
-    while (tour==0){
+    yaw=flight->getYaw();
+      yaw=RAD2DEG*yaw+180;
+      oldYaw=yaw;
+      old=yaw;
+    //moveByPositionOffset(api,flight,0,0,1,0,1500,3,10);
     
-    std::cout << " please enter a letter. a for take control, n for a tour, l for a line, t for takeoff and x for landing " << std::endl;
+     while (tour==0){
+    cout << endl;
+  cout << "| Available commands:                                            |" << endl;
+  cout << "| [a] Request Control                                            |" << endl;
+  cout << "| [r] Release Control                                            |" << endl;
+  cout << "| [n] Tour                                                       |" << endl;
+  cout << "| [p] Tour with take control and release                         |" << endl;
+  cout << "| [l] Line                                                       |" << endl;
+  cout << "| [t] Takeoff                                                    |" << endl;
+  cout << "| [x] Landing And Exit                                           |" << endl;
      cin >> inputchar;	
 
 switch (inputchar)
@@ -173,7 +196,7 @@ switch (inputchar)
         while( quarter<5 ) {
 		yaw=flight->getYaw();
 		yaw=RAD2DEG*yaw+180;	
-        int status1=moveWithVelocity(api,flight,0,0,0, 10 ,1500, 3, 0.1);
+        int status1=moveWithVelocity(api,flight,0,0,0, radialSpeed ,1500, 3, 0.1);
         if ( oldYaw <90 && yaw >= 90){
 			cout<< " First quarter complete with an angle of : "<< yaw << endl;
 			quarter=quarter+1;
@@ -200,7 +223,46 @@ switch (inputchar)
         oldYaw=yaw;
 		
 	} quarter=0;
-	cout << " apres le while     " << yaw<< endl;
+	
+        break;
+        case 'p':
+         takeControlStatus = takeControl(api);
+      number++;
+      yaw=flight->getYaw();
+      yaw=RAD2DEG*yaw+180;
+      oldYaw=yaw;
+      old=yaw;
+        while( quarter<5 ) {
+		yaw=flight->getYaw();
+		yaw=RAD2DEG*yaw+180;	
+        int status1=moveWithVelocity(api,flight,0,0,0, radialSpeed ,1500, 3, 0.1);
+        if ( oldYaw <90 && yaw >= 90){
+			cout<< " First quarter complete with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <180 && yaw >=180){
+			cout<< " Second quarter complete  with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <270 && yaw >= 270){
+			cout<< " Third quarter complete  with an angle of : " << yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw>350  && yaw <=10){
+			cout<< " Fourth quarter complete  with an angle of : " << yaw<< endl;
+			quarter=quarter+1;
+		}
+		if(fmod(yaw,5)<1 && abs(yaw-old)>4 ){
+			curPosition =flight -> getPosition();
+            localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+			fileRadio <<number << "," << yaw  <<","<< radioValue <<","<< curLocalOffset.x  <<","<< curLocalOffset.y  <<","<< curLocalOffset.z<<"\n";
+			old=yaw;
+		}
+        
+        oldYaw=yaw;
+		
+	} quarter=0;
+	releaseControlStatus = releaseControl(api);
         break;
       case 'l':
         while(curLocalOffset.x<3 ){
@@ -214,6 +276,7 @@ switch (inputchar)
          takeoff = monitoredTakeoff(api, flight, blockingTimeout);
         break;
       case 'x':
+      takeControlStatus = takeControl(api);
          land = landing(api, flight,blockingTimeout);
         tour=1;
         break;
@@ -224,7 +287,7 @@ switch (inputchar)
      // wayPointMissionExample(api, waypointObj,blockingTimeout);
 	}
 	
-}
+} 
       //! Land
       ackReturnData landingStatus = landing(api, flight,blockingTimeout);
     }

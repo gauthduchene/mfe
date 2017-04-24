@@ -12,6 +12,8 @@
 #ifndef LINUXTHREAD_H
 #define LINUXTHREAD_H
 
+#include <string>
+#include <cstring>
 #include <DJI_HardDriver.h>
 #include <DJI_Camera.h>
 #include <DJI_Flight.h>
@@ -26,6 +28,7 @@
 
 #include <string>
 
+using namespace std;
 using namespace DJI::onboardSDK;
 
 class LinuxThread
@@ -33,7 +36,7 @@ class LinuxThread
   public:
     LinuxThread();
  
-    LinuxThread(CoreAPI *api,Flight *FLIGHT,float *pointerRadio,int *pointerNumber,int argc2,char* argv2[], int type);
+    LinuxThread(CoreAPI *api,Flight *FLIGHT,float *pointerRadio,int *pointerNumber,string extension,int argc2,char* argv2[], int type);
 
     bool createThread();
     int stopThread();

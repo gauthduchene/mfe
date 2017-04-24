@@ -219,6 +219,10 @@ DJI_HardDriver.h
 ../sample/Linux/Blocking/../../../platform/linux/inc/DJI_HardDriver.h
 
 ../sample/Linux/Blocking/../../../platform/linux/inc/LinuxThread.h
+string
+-
+cstring
+-
 DJI_HardDriver.h
 -
 DJI_Camera.h

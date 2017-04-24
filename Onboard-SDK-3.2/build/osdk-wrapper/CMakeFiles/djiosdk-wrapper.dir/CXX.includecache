@@ -129,6 +129,10 @@ DJI_HardDriver.h
 ../osdk-wrapper/../platform/linux/inc/DJI_HardDriver.h
 
 ../osdk-wrapper/../platform/linux/inc/LinuxThread.h
+string
+-
+cstring
+-
 DJI_HardDriver.h
 -
 DJI_Camera.h

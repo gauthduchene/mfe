@@ -251,6 +251,10 @@ DJI_HardDriver.h
 ../platform/linux/inc/DJI_HardDriver.h
 
 ../platform/linux/inc/LinuxThread.h
+string
+-
+cstring
+-
 DJI_HardDriver.h
 -
 DJI_Camera.h
