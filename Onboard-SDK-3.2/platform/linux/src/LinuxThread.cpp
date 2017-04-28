@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <stdio.h> 
+#include <random>
 
 //UHD Library Headers
 
@@ -51,21 +52,88 @@
 #include <DJI_Version.h>
 #include <DJI_WayPoint.h>
 
+#define RAD2DEG 57.2957795131
+
 int argc;
 char* argv[7];
 Flight* flight2;
 namespace po = boost::program_options;
 using namespace std;
 ofstream myfile;
+ofstream radioFile;
 float* secondPointer;
 int* numberTest;
 string nameFile;
+float measureFromRadio;
+float anechoic[146]={-0.610573904655756,-0.605673171999834,-0.609233139115430,-0.597998403131622,-0.570383820445954,-0.533152138714971,-0.490700604609717,-0.449268593215672,-0.433179815208205,-0.454018249561846,-0.495146594915018,-0.554986983623309,-0.625412421523031,-0.716561710358143,-0.833828053478985,-0.914086153417427,-0.915415714042876,-0.896035386443098,-0.895837636357464,-0.912766761214182,-0.898445107292991,-0.799681899809561,-0.647910676232069,-0.471547038098896,-0.278285089091758,-0.0647828509675771,0.165480694952497,0.417663704953099,0.684403672409022,0.965514284521856,1.26284839885545,1.54910811422080,1.81152178920146,2.02610122047125,2.18953252925186,2.27720713367277,2.28068464492385,2.20239145566934,2.07768207850876,1.94269901807072,1.79583320394509,1.63789612587329,1.44514302985917,1.24466504156943,1.00481880640037,0.731670410087658,0.421488010540310,0.105909464207942,-0.167591372847650,-0.334253477951072,-0.422180693613604,-0.456473122299758,-0.529543075586474,-0.659165841183863,-0.814520910222519,-0.865732238463638,-0.769952827490998,-0.650922776837373,-0.563767650767991,-0.522867436359072,-0.516390303535491,-0.530685346544761,-0.556044174625141,-0.571317449059288,-0.582167793994181,-0.586136082493272,-0.580382336373785,-0.562652077235247,-0.551851725587245,-0.543665643872639,-0.536739650257883,-0.540370525422992,-0.549976382014673,-0.610573904655756,-0.605673171999834,-0.609233139115430,-0.597998403131622,-0.570383820445954,-0.533152138714971,-0.490700604609717,-0.449268593215672,-0.433179815208205,-0.454018249561846,-0.495146594915018,-0.554986983623309,-0.625412421523031,-0.716561710358143,-0.833828053478985,-0.914086153417427,-0.915415714042876,-0.896035386443098,-0.895837636357464,-0.912766761214182,-0.898445107292991,-0.799681899809561,-0.647910676232069,-0.471547038098896,-0.278285089091758,-0.0647828509675771,0.165480694952497,0.417663704953099,0.684403672409022,0.965514284521856,1.26284839885545,1.54910811422080,1.81152178920146,2.02610122047125,2.18953252925186,2.27720713367277,2.28068464492385,2.20239145566934,2.07768207850876,1.94269901807072,1.79583320394509,1.63789612587329,1.44514302985917,1.24466504156943,1.00481880640037,0.731670410087658,0.421488010540310,0.105909464207942,-0.167591372847650,-0.334253477951072,-0.422180693613604,-0.456473122299758,-0.529543075586474,-0.659165841183863,-0.814520910222519,-0.865732238463638,-0.769952827490998,-0.650922776837373,-0.563767650767991,-0.522867436359072,-0.516390303535491,-0.530685346544761,-0.556044174625141,-0.571317449059288,-0.582167793994181,-0.586136082493272,-0.580382336373785,-0.562652077235247,-0.551851725587245,-0.543665643872639,-0.536739650257883,-0.540370525422992,-0.549976382014673};
+float mean=0;
+float standardDeviation=0;
+float result[72]={0};
+
+
+struct measurement { //definition of structure measurement for radio value
+	float32_t yaw;
+	float measure;
+};
+
+struct measurement measurements[72]={0};
 
 LinuxThread::LinuxThread()
 {
     api = 0;
     type = 0;
 }
+
+void compute(){
+	mean =0;
+	struct measurement ma;
+	float sum;
+	standardDeviation=0;
+	int i;
+	for (i=0;i<72;i++){
+		ma=measurements[i];
+        sum += ma.measure;
+    }
+
+    mean = sum/72;
+
+    for(i = 0; i < 72; ++i){
+		ma=measurements[i];
+        standardDeviation += pow(ma.measure - mean, 2);
+		}
+    standardDeviation=sqrt(standardDeviation / 72);
+    
+	
+}
+
+int compare_measurements(const void *m1, const void *m2){
+  if (((struct measurement *)m1)->yaw > ((struct measurement*)m2)->yaw)
+    return +1;
+  return -1;
+}
+
+float32_t correlation(){
+	compute();
+	float max=0;
+	int indexMax=0;
+	struct measurement ms;
+	for (int theta=0;theta<72;theta++){
+		result[theta]=0;
+		for(int alpha=0;alpha<72;alpha++){
+				ms=measurements[alpha];
+				result[theta]=result[theta]+anechoic[alpha+theta]*ms.measure;
+			}
+		}
+	for(int a=0;a<72;a++){
+		if( result[a] > max){
+		indexMax=a;		
+		}
+		}
+		ms=measurements[indexMax];
+		std::cout<< " la valeur de index max " << indexMax  << "  et la valeur max de radio correspondate " << ms.measure << " pour un angle de " << ms.yaw  << endl;
+	}
+
+
 
 LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,string extension,int argc2, char* argv2[], int Type)
 {
@@ -202,6 +270,11 @@ void *LinuxThread::save_data(void *param)
 {
   while(true)
   {
+	  
+	  struct measurement m;
+	  bool actif=0;
+	  int index=0;
+	  int oldNumberTest=0;
     int i=0;
 int blockingTimeout = 1; 
   unsigned short dataFlag;
@@ -218,7 +291,9 @@ int blockingTimeout = 1;
   FlightStatus status; //! @todo define enum
   BatteryData battery;
   CtrlInfoData ctrlInfo;
+  Angle old;
   Angle yaw;
+  Angle yaw2;
   Angle roll;
   Angle pitch;
   PositionData curPosition;
@@ -227,11 +302,17 @@ int blockingTimeout = 1;
   DJI::EulerAngle curEuler;
 usleep(500000);
   curPosition = flight2 -> getPosition();
-
+ yaw=flight2 ->getYaw();
+  yaw2=RAD2DEG*yaw+180;
+ old=yaw2;
+ 
 	originPosition = curPosition;
  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
     string fullName = "log"+nameFile;
+    string fullRecord = "antenna"+nameFile;
 	myfile.open (fullName);
+	radioFile.open (fullRecord);
+	radioFile.precision(9);
 	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, radio value,\n";
 pos=flight2 -> getPosition();
     while (1){
@@ -253,9 +334,29 @@ curEuler = Flight::toEulerAngle(q);
 	// rtk
 	//rc	
 
-	myfile <<","<<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
+	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
 
 	i=i+1;
+	
+	if( *numberTest !=oldNumberTest){
+		actif =1;
+		cout <<  " on set le actif to 1 " << endl;
+		oldNumberTest=*numberTest;
+	}
+	
+	if(actif==1 && fmod(yaw2,5)<1 && abs(yaw2-old)>4 ){
+		m.yaw=yaw2;
+		m.measure=measureFromRadio;
+		measurements[index]=m;
+		radioFile << m.yaw <<","<< m.measure << *numberTest<< ",\n";
+		index=index+1;
+		if (index==71){
+			actif=0;
+			index=0;
+			qsort(measurements, 72, sizeof(struct measurement), compare_measurements);
+			correlation();
+		}
+	}
 	usleep(5000);
   }
 }
@@ -273,7 +374,7 @@ void *LinuxThread::radio(void *param)
   while(true)
   {
 	uhd::set_thread_priority_safe();
-
+	measureFromRadio=0;
     //variables to be set by po
     std::string args;
     std::string wire;
@@ -398,6 +499,7 @@ while(1) {
         //use a small timeout for subsequent packets
         timeout = 0.1;
 		*secondPointer=avg;
+		measureFromRadio=avg;
         //handle the error code
         if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;
         if (md.error_code != uhd::rx_metadata_t::ERROR_CODE_NONE){
@@ -423,4 +525,6 @@ while(1) {
 }
 
 }
+
+
 

@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_API.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_App.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Camera.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Codec.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Flight.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Follow.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_HardDriver.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_HotPoint.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Link.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Logging.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Memory.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Mission.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_VirtualRC.cpp.o"
-  "/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.cpp" "/home/pi/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_WayPoint.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_API.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_API.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_App.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_App.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Camera.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Camera.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Codec.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Codec.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Flight.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Flight.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Follow.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Follow.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HardDriver.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_HardDriver.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_HotPoint.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_HotPoint.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Link.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Link.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Logging.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Logging.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Memory.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Memory.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_Mission.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_Mission.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_VirtualRC.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_VirtualRC.cpp.o"
+  "/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-core/src/DJI_WayPoint.cpp" "/home/duduche/Documents/mfe/Onboard-SDK-3.2/build/osdk-core/CMakeFiles/djiosdk-core.dir/src/DJI_WayPoint.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
