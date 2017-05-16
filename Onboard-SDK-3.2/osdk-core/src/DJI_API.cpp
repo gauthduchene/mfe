@@ -535,34 +535,34 @@ void CoreAPI::setBroadcastFreqDefaults()
   */
 
   if (strcmp(versionData.hwVersion, "M100") == 0) {
-    freq[0] = BROADCAST_FREQ_1HZ;
-    freq[1] = BROADCAST_FREQ_10HZ;
-    freq[2] = BROADCAST_FREQ_50HZ;
+    freq[0] = BROADCAST_FREQ_100HZ;
+    freq[1] = BROADCAST_FREQ_100HZ;
+    freq[2] = BROADCAST_FREQ_100HZ;
     freq[3] = BROADCAST_FREQ_100HZ;
-    freq[4] = BROADCAST_FREQ_50HZ;
-    freq[5] = BROADCAST_FREQ_10HZ;
-    freq[6] = BROADCAST_FREQ_1HZ;
-    freq[7] = BROADCAST_FREQ_10HZ;
-    freq[8] = BROADCAST_FREQ_50HZ;
+    freq[4] = BROADCAST_FREQ_100HZ;
+    freq[5] = BROADCAST_FREQ_100HZ;
+    freq[6] = BROADCAST_FREQ_100HZ;
+    freq[7] = BROADCAST_FREQ_100HZ;
+    freq[8] = BROADCAST_FREQ_100HZ;
     freq[9] = BROADCAST_FREQ_100HZ;
-    freq[10] = BROADCAST_FREQ_50HZ;
-    freq[11] = BROADCAST_FREQ_10HZ;
+    freq[10] = BROADCAST_FREQ_100HZ;
+    freq[11] = BROADCAST_FREQ_100HZ;
   }
   else {//! A3/N3/M600
-    freq[0] = BROADCAST_FREQ_1HZ;
-    freq[1] = BROADCAST_FREQ_10HZ;
-    freq[2] = BROADCAST_FREQ_50HZ;
+    freq[0] = BROADCAST_FREQ_100HZ;
+    freq[1] = BROADCAST_FREQ_100HZ;
+    freq[2] = BROADCAST_FREQ_100HZ;
     freq[3] = BROADCAST_FREQ_100HZ;
-    freq[4] = BROADCAST_FREQ_50HZ;
-    freq[5] = BROADCAST_FREQ_10HZ;
-    freq[6] = BROADCAST_FREQ_0HZ;
-    freq[7] = BROADCAST_FREQ_0HZ;
-    freq[8] = BROADCAST_FREQ_1HZ;
-    freq[9] = BROADCAST_FREQ_10HZ;
-    freq[10] = BROADCAST_FREQ_50HZ;
+    freq[4] = BROADCAST_FREQ_100HZ;
+    freq[5] = BROADCAST_FREQ_100HZ;
+    freq[6] = BROADCAST_FREQ_100HZ;
+    freq[7] = BROADCAST_FREQ_100HZ;
+    freq[8] = BROADCAST_FREQ_100HZ;
+    freq[9] = BROADCAST_FREQ_100HZ;
+    freq[10] = BROADCAST_FREQ_100HZ;
     freq[11] = BROADCAST_FREQ_100HZ;
-    freq[12] = BROADCAST_FREQ_50HZ;
-    freq[13] = BROADCAST_FREQ_10HZ;
+    freq[12] = BROADCAST_FREQ_100HZ;
+    freq[13] = BROADCAST_FREQ_100HZ;
   }
   setBroadcastFreq(freq);
 }
@@ -660,34 +660,34 @@ unsigned short CoreAPI::setBroadcastFreqDefaults(int timeout)
    */
 
   if (strcmp(versionData.hwVersion, "M100") == 0) {
-    freq[0] = BROADCAST_FREQ_1HZ;
-    freq[1] = BROADCAST_FREQ_10HZ;
-    freq[2] = BROADCAST_FREQ_50HZ;
+    freq[0] = BROADCAST_FREQ_100HZ;
+    freq[1] = BROADCAST_FREQ_100HZ;
+    freq[2] = BROADCAST_FREQ_100HZ;
     freq[3] = BROADCAST_FREQ_100HZ;
-    freq[4] = BROADCAST_FREQ_50HZ;
-    freq[5] = BROADCAST_FREQ_10HZ;
-    freq[6] = BROADCAST_FREQ_1HZ;
-    freq[7] = BROADCAST_FREQ_10HZ;
-    freq[8] = BROADCAST_FREQ_50HZ;
+    freq[4] = BROADCAST_FREQ_100HZ;
+    freq[5] = BROADCAST_FREQ_100HZ;
+    freq[6] = BROADCAST_FREQ_100HZ;
+    freq[7] = BROADCAST_FREQ_100HZ;
+    freq[8] = BROADCAST_FREQ_100HZ;
     freq[9] = BROADCAST_FREQ_100HZ;
-    freq[10] = BROADCAST_FREQ_50HZ;
-    freq[11] = BROADCAST_FREQ_10HZ;
+    freq[10] = BROADCAST_FREQ_100HZ;
+    freq[11] = BROADCAST_FREQ_100HZ;
   }
   else { //! A3/N3/M600
-    freq[0] = BROADCAST_FREQ_1HZ;
-    freq[1] = BROADCAST_FREQ_10HZ;
-    freq[2] = BROADCAST_FREQ_50HZ;
+    freq[0] = BROADCAST_FREQ_100HZ;
+    freq[1] = BROADCAST_FREQ_100HZ;
+    freq[2] = BROADCAST_FREQ_100HZ;
     freq[3] = BROADCAST_FREQ_100HZ;
-    freq[4] = BROADCAST_FREQ_50HZ;
-    freq[5] = BROADCAST_FREQ_10HZ;
-    freq[6] = BROADCAST_FREQ_0HZ;
-    freq[7] = BROADCAST_FREQ_0HZ;
-    freq[8] = BROADCAST_FREQ_1HZ;
-    freq[9] = BROADCAST_FREQ_10HZ;
-    freq[10] = BROADCAST_FREQ_50HZ;
+    freq[4] = BROADCAST_FREQ_100HZ;
+    freq[5] = BROADCAST_FREQ_100HZ;
+    freq[6] = BROADCAST_FREQ_100HZ;
+    freq[7] = BROADCAST_FREQ_100HZ;
+    freq[8] = BROADCAST_FREQ_100HZ;
+    freq[9] = BROADCAST_FREQ_100HZ;
+    freq[10] = BROADCAST_FREQ_100HZ;
     freq[11] = BROADCAST_FREQ_100HZ;
-    freq[12] = BROADCAST_FREQ_50HZ;
-    freq[13] = BROADCAST_FREQ_10HZ;
+    freq[12] = BROADCAST_FREQ_100HZ;
+    freq[13] = BROADCAST_FREQ_100HZ;
   }
 
   return setBroadcastFreq(freq, timeout);

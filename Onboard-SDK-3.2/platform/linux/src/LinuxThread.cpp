@@ -53,6 +53,7 @@
 #include <DJI_WayPoint.h>
 
 #define RAD2DEG 57.2957795131
+#define DEG2RAD 0.01745329252
 
 int argc;
 char* argv[7];
@@ -126,11 +127,13 @@ float32_t correlation(){
 		}
 	for(int a=0;a<72;a++){
 		if( result[a] > max){
-		indexMax=a;		
+		indexMax=a;	
+		max=result[a];	
 		}
 		}
 		ms=measurements[indexMax];
 		std::cout<< " la valeur de index max " << indexMax  << "  et la valeur max de radio correspondate " << ms.measure << " pour un angle de " << ms.yaw  << endl;
+		*secondPointer=ms.yaw;
 	}
 
 
@@ -311,8 +314,9 @@ usleep(500000);
     string fullName = "log"+nameFile;
     string fullRecord = "antenna"+nameFile;
 	myfile.open (fullName);
+	myfile.precision(15);
 	radioFile.open (fullRecord);
-	radioFile.precision(9);
+	radioFile.precision(15);
 	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, radio value,\n";
 pos=flight2 -> getPosition();
     while (1){
@@ -324,6 +328,7 @@ pos=flight2 -> getPosition();
 	ya=flight2  -> getYawRate();
 	mag=flight2 -> getMagnet();
         yaw=flight2 ->getYaw();
+        yaw2=RAD2DEG*yaw+180;
 	roll=flight2 ->getRoll();
         pitch=flight2 ->getPitch();
         curPosition =flight2 -> getPosition();
@@ -334,30 +339,32 @@ curEuler = Flight::toEulerAngle(q);
 	// rtk
 	//rc	
 
-	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ",\n";
+	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ","<< yaw2 <<",\n";
 
 	i=i+1;
 	
 	if( *numberTest !=oldNumberTest){
 		actif =1;
+		index=0;
 		cout <<  " on set le actif to 1 " << endl;
 		oldNumberTest=*numberTest;
 	}
 	
-	if(actif==1 && fmod(yaw2,5)<1 && abs(yaw2-old)>4 ){
+	if(actif==1 && fmod(yaw2,5)<1.5 && abs(yaw2-old)>3 ){
 		m.yaw=yaw2;
 		m.measure=measureFromRadio;
 		measurements[index]=m;
-		radioFile << m.yaw <<","<< m.measure << *numberTest<< ",\n";
+		radioFile << m.yaw <<","<< m.measure <<","<< *numberTest<< ",\n";
 		index=index+1;
-		if (index==71){
+		old=yaw2;
+		if (index==72){
 			actif=0;
 			index=0;
 			qsort(measurements, 72, sizeof(struct measurement), compare_measurements);
 			correlation();
 		}
 	}
-	usleep(5000);
+	usleep(10000);
   }
 }
 }
@@ -498,7 +505,6 @@ while(1) {
 		//std::cout<<" valeur de la moyenne   " << avg<<std::endl;
         //use a small timeout for subsequent packets
         timeout = 0.1;
-		*secondPointer=avg;
 		measureFromRadio=avg;
         //handle the error code
         if (md.error_code == uhd::rx_metadata_t::ERROR_CODE_TIMEOUT) break;

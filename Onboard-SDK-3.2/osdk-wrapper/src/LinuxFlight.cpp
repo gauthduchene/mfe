@@ -372,7 +372,7 @@ int moveByPositionOffset(CoreAPI* api, Flight* flight, float32_t xOffsetDesired,
   float32_t posThresholdInM = posThresholdInCm/100;
 
   int elapsedTime = 0;
-  int speedFactor = 2;
+  int speedFactor = 1;
   float xCmd, yCmd, zCmd;
 
   /*! Calculate the inputs to send the position controller. We implement basic

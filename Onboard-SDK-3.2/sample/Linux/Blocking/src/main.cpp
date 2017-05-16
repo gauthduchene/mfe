@@ -48,6 +48,7 @@
 
 
 #define RAD2DEG 57.2957795131
+#define DEG2RAD 0.01745329252
 using namespace std;
 using namespace DJI;
 using namespace DJI::onboardSDK;
@@ -140,10 +141,12 @@ int main(int argc, char *argv[])
 		PositionData originPosition;
  		DJI::Vector3dData curLocalOffset; 
 		DJI::EulerAngle curEuler;
-	  std::cout << "\n avant le move\n";
+	  std::cout << "\n avant le ecole\n";
     float speedX=0.5;
     float speedY=0.5;
     float speedZ=0.5;
+    float desiredAngle;
+    int status21;
    	curPosition = api->getBroadcastData().pos;
 		originPosition = curPosition;
     int currentValueX;
@@ -152,6 +155,7 @@ int main(int argc, char *argv[])
     int currentValueYAW;
     int done=0;
     int tour=0;
+    float oldRadioValue=0;
     localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
     char inputchar;
     ackReturnData takeControlStatus;
@@ -162,7 +166,11 @@ int main(int argc, char *argv[])
     Angle oldYaw;
     Angle old;
     yaw=flight->getYaw();
+    int status6;
+    int status7;
+    int status8;
     int quarter=0;
+    float distance=0;
     fileRadio << "Number" <<","<<"yaw"  <<","<< "radioValue" <<","<< "Position x"  <<","<< "Position y"  <<","<< "Position z"<<"\n";
     yaw=flight->getYaw();
       yaw=RAD2DEG*yaw+180;
@@ -174,9 +182,12 @@ int main(int argc, char *argv[])
     cout << endl;
   cout << "| Available commands:                                            |" << endl;
   cout << "| [a] Request Control                                            |" << endl;
+  cout << "| [i] Information                                                |" << endl;
+  cout << "| [g] Move by offset x=3                                         |" << endl;
+  cout << "| [k] Move from angle yaw                                        |" << endl;
   cout << "| [r] Release Control                                            |" << endl;
   cout << "| [n] Tour                                                       |" << endl;
-  cout << "| [p] Tour with take control and release                         |" << endl;
+  cout << "| [p] Tour with angle and move                                   |" << endl;
   cout << "| [l] Line                                                       |" << endl;
   cout << "| [t] Takeoff                                                    |" << endl;
   cout << "| [x] Landing And Exit                                           |" << endl;
@@ -186,47 +197,14 @@ switch (inputchar)
     {
 	  case 'a':
         takeControlStatus = takeControl(api);
-        break;	
-      case 'n':
-      number++;
-      yaw=flight->getYaw();
-      yaw=RAD2DEG*yaw+180;
-      oldYaw=yaw;
-      old=yaw;
-        while( quarter<5 ) {
-		yaw=flight->getYaw();
-		yaw=RAD2DEG*yaw+180;	
-        int status1=moveWithVelocity(api,flight,0,0,0, radialSpeed ,1500, 3, 0.1);
-        if ( oldYaw <90 && yaw >= 90){
-			cout<< " First quarter complete with an angle of : "<< yaw << endl;
-			quarter=quarter+1;
-		}
-		else if ( oldYaw <180 && yaw >=180){
-			cout<< " Second quarter complete  with an angle of : "<< yaw << endl;
-			quarter=quarter+1;
-		}
-		else if ( oldYaw <270 && yaw >= 270){
-			cout<< " Third quarter complete  with an angle of : " << yaw << endl;
-			quarter=quarter+1;
-		}
-		else if ( oldYaw>350  && yaw <=10){
-			cout<< " Fourth quarter complete  with an angle of : " << yaw<< endl;
-			quarter=quarter+1;
-		}
-		if(fmod(yaw,5)<1 && abs(yaw-old)>4 ){
-			curPosition =flight -> getPosition();
-            localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-			fileRadio <<number << "," << yaw  <<","<< radioValue <<","<< curLocalOffset.x  <<","<< curLocalOffset.y  <<","<< curLocalOffset.z<<"\n";
-			old=yaw;
-		}
-        
-        oldYaw=yaw;
-		
-	} quarter=0;
-	
         break;
-        case 'p':
-         takeControlStatus = takeControl(api);
+       case 'i':
+       yaw=flight->getYaw();
+       yaw=RAD2DEG*yaw+180; 
+       cout << " value of yaw angle  : " << yaw << endl;
+       break; 	
+      case 'n':
+      takeControlStatus = takeControl(api);
       number++;
       yaw=flight->getYaw();
       yaw=RAD2DEG*yaw+180;
@@ -264,7 +242,72 @@ switch (inputchar)
 	} quarter=0;
 	releaseControlStatus = releaseControl(api);
         break;
+        case 'p':
+        oldRadioValue=radioValue;
+         takeControlStatus = takeControl(api);
+      number++;
+      yaw=flight->getYaw();
+      yaw=RAD2DEG*yaw+180;
+      oldYaw=yaw;
+      old=yaw;
+        while( quarter<5 ) {
+		yaw=flight->getYaw();
+		yaw=RAD2DEG*yaw+180;	
+        int status1=moveWithVelocity(api,flight,0,0,0, radialSpeed ,1500, 3, 0.1);
+        if ( oldYaw <90 && yaw >= 90){
+			cout<< " First quarter complete with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <180 && yaw >=180){
+			cout<< " Second quarter complete  with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <270 && yaw >= 270){
+			cout<< " Third quarter complete  with an angle of : " << yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw>350  && yaw <=10){
+			cout<< " Fourth quarter complete  with an angle of : " << yaw<< endl;
+			quarter=quarter+1;
+		}
+		if(fmod(yaw,5)<1 && abs(yaw-old)>4 ){
+			curPosition =flight -> getPosition();
+            localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+			fileRadio <<number << "," << yaw  <<","<< radioValue <<","<< curLocalOffset.x  <<","<< curLocalOffset.y  <<","<< curLocalOffset.z<<"\n";
+			old=yaw;
+		}
+        
+        oldYaw=yaw;
+		
+	} quarter=0;
+	usleep(1000000); 
+	if ( radioValue != oldRadioValue){
+		desiredAngle=radioValue;
+		desiredAngle=360-desiredAngle;
+		cout << " radioValue in p : " << radioValue << endl;
+		//desiredAngle=85;
+		if (desiredAngle > 180){
+		 desiredAngle=desiredAngle-360;
+		}
+		oldRadioValue=radioValue;
+		status6=moveByPositionOffset(api,flight,0,0,0,desiredAngle,1500,3,10);
+		usleep(1000000);
+		cout<< " If the angle is right, indicate a distance " << endl;
+		cin >> distance;
+		if (distance !=0){
+			cout << " valeur a bouger en w x :" << distance*cos(DEG2RAD*desiredAngle) << " et la valeur en y " << distance*sin(DEG2RAD*desiredAngle) << endl;
+			status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,15000000,3,30);
+			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),0,0,desiredAngle,1500,3,10);
+			//status7=moveByPositionOffset(api,flight,0,distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,1500,3,10);
+		}
+		
+	}
+	releaseControlStatus = releaseControl(api);
+        break;
       case 'l':
+      curPosition = api->getBroadcastData().pos;
+  	curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
         while(curLocalOffset.x<3 ){
 		int status1=moveWithVelocity(api,flight,speedX,0,0,0 ,1500, 3, 0.1);
 		curPosition = api->getBroadcastData().pos;
@@ -275,14 +318,27 @@ switch (inputchar)
       case 't':
          takeoff = monitoredTakeoff(api, flight, blockingTimeout);
         break;
+        case 'r':
+       releaseControlStatus = releaseControl(api);
+       break;
+     
       case 'x':
       takeControlStatus = takeControl(api);
          land = landing(api, flight,blockingTimeout);
         tour=1;
         break;
-      case 'r':
-       releaseControlStatus = releaseControl(api);
-       break;
+      
+       case 'g':
+          status21 = moveByPositionOffset(api,flight,0,3,0,0,1500000000,3,10);
+        break;  
+        case 'k':
+		  float32_t yawDesired;
+		  cout << " valeur de yaw voulue " << endl;
+		  cin >> yawDesired;
+          int status15 = moveByPositionOffset(api,flight,0,0,0,yawDesired,1500,3,10);
+        break;  
+        
+        
       //! Do aircraft control - Waypoint example. 
      // wayPointMissionExample(api, waypointObj,blockingTimeout);
 	}

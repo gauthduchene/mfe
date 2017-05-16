@@ -1,4 +1,4 @@
-# Install script for directory: /home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper
+# Install script for directory: /home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

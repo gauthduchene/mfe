@@ -258,33 +258,33 @@ cstring
 iostream
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCamera.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCamera.cpp
 LinuxCamera.h
 -
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.cpp
 LinuxCleanup.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxCleanup.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.cpp
 LinuxFlight.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxFlight.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.cpp
 LinuxMobile.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxMobile.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.cpp
 LinuxSetup.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxSetup.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.cpp
 LinuxWaypoint.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/LinuxWaypoint.h
 
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.cpp
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.cpp
 ReadUserConfig.h
-/home/duduche/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.h
+/home/pi/Documents/mfe/Onboard-SDK-3.2/osdk-wrapper/src/ReadUserConfig.h
 fstream
 -
 
