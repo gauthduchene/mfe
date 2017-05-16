@@ -63,6 +63,7 @@ using namespace std;
 ofstream myfile;
 ofstream radioFile;
 float* secondPointer;
+char* key;
 int* numberTest;
 string nameFile;
 float measureFromRadio;
@@ -138,7 +139,7 @@ float32_t correlation(){
 
 
 
-LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,string extension,int argc2, char* argv2[], int Type)
+LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* number,string extension,char* callBack_char,int argc2, char* argv2[], int Type)
 {
   api = API;
   flight2=FLIGHT;
@@ -155,6 +156,7 @@ LinuxThread::LinuxThread(CoreAPI *API,Flight* FLIGHT,float* pointerRadio,int* nu
   secondPointer=pointerRadio;
   numberTest=number;
   nameFile=extension;
+  key=callBack_char;
 }
 
 bool LinuxThread::createThread()
@@ -317,7 +319,7 @@ usleep(500000);
 	myfile.precision(15);
 	radioFile.open (fullRecord);
 	radioFile.precision(15);
-	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, radio value,\n";
+	myfile << "Quaternion q0,Quaternion q1,quaternion q2,quaternion q3,velocity x,velocity y, velocity z,latitude,longitude,altitude,height, acceleration x,acceleration y, acceleration z, mag x, mag y, mag z,Yaw,Roll,Pitch,Posx, PosY, PosZ,number test, matched value,  radio value, yaw in 180 ref , \n";
 pos=flight2 -> getPosition();
     while (1){
         q=flight2   -> getQuaternion();
@@ -339,7 +341,7 @@ curEuler = Flight::toEulerAngle(q);
 	// rtk
 	//rc	
 
-	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ","<< yaw2 <<",\n";
+	myfile <<q.q0  <<","<< q.q1 <<","<< q.q2 <<","<< q.q3 <<","<< v.x <<","<< v.y <<","<< v.z <<","<< pos.latitude <<","<< pos.longitude <<","<< pos.altitude <<","<< pos.height <<","<< acc.x <<","<< acc.y <<","<< acc.z <<","<< mag.x <<","<< mag.y <<","<< mag.z <<","<<yaw <<","<<roll<<","<<pitch<< ","<< curLocalOffset.x << ","<< curLocalOffset.y << ","<<curLocalOffset.z <<","<<*numberTest <<","<<*secondPointer<< ","<< measureFromRadio << ","<< yaw2  << ","<< *key << ",\n";
 
 	i=i+1;
 	
@@ -369,10 +371,11 @@ curEuler = Flight::toEulerAngle(q);
 }
 }
 void *LinuxThread::key_call(void *param)
-{
+{	
+	cout << " le thread de callback est fonctionel " << endl;
   while(true)
   {
-    
+    cin >> *key;
   }
 }
 
@@ -393,7 +396,7 @@ void *LinuxThread::radio(void *param)
     double freq;
     double gain;
     double norm;
-    *secondPointer=12545;
+    *secondPointer=0;
     //setup the program options
     po::options_description desc("Allowed options");
     desc.add_options()
@@ -489,7 +492,7 @@ while(1) {
         buffs.push_back(&buff.front()); //same buffer for each channel
 
     //the first call to recv() will block this many seconds before receiving
-    double timeout = seconds_in_future + 0.1; //timeout (delay before receive + padding)
+    double timeout = seconds_in_future + 0.05; //timeout (delay before receive + padding)
 	float avg =0;
     size_t num_acc_samps = 0; //number of accumulated samples
     while(num_acc_samps < total_num_samps){
@@ -525,7 +528,7 @@ while(1) {
 
     //finished
     //std::cout << std::endl << "Done!" << std::endl << std::endl;
-    seconds_in_future = seconds_in_future +0.1;
+    seconds_in_future = seconds_in_future +0.05;
 }
   
 }

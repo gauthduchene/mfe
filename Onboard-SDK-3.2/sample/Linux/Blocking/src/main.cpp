@@ -57,13 +57,18 @@ Flight* flight;
 int c;
 float radioValue =6;
 float *pointerRadio;
+char *callBack_char;
+char keyboard;
 ofstream fileRadio;
 int *pointerNumber;
 int number=0;
+int mode=0;
+float distanceMove=0;
 
 //! Main function for the Linux sample. Lightweight. Users can call their own API calls inside the Programmatic Mode else on Line 68. 
 int main(int argc, char *argv[])
 {
+	  //! Instantiate a serialDevice, an API object, flight and waypoint objects and a read thread.
 	  //! Instantiate a serialDevice, an API object, flight and waypoint objects and a read thread.
   LinuxSerialDevice* serialDevice = new LinuxSerialDevice(UserConfig::deviceName, UserConfig::baudRate);
   //cout << " valeur choisie deuxieme " << name<<endl;
@@ -72,8 +77,12 @@ int main(int argc, char *argv[])
   WayPoint* waypointObj = new WayPoint(api);
   Camera* camera = new Camera(api);
   float32_t radialSpeed;
+	cout << " Which mode ? 2 for autonomous " << endl;
+	cin >> mode;
 	cout << " Yaw rate desired ? : " << endl;
 	cin >> radialSpeed;
+	cout << "indicate an autonomous distance " << endl;
+	cin >> distanceMove;
 	cout << " name desired " << endl;
 	string name;
 	cin >> name;
@@ -81,12 +90,13 @@ int main(int argc, char *argv[])
 	string extension= name+".csv";
 	pointerRadio = &radioValue;
 	pointerNumber = &number;
+	callBack_char = &keyboard;
 	fileRadio.open(extension);
     
-  LinuxThread read(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 2);
-  LinuxThread data(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 4); // create thread for save data
-  LinuxThread key(api,flight,pointerRadio,pointerNumber,extension,argc,argv, 5);
-  LinuxThread radio(api,flight,pointerRadio,pointerNumber,extension,argc,argv,6);  // create thread to control radio
+  LinuxThread read(api,flight,pointerRadio,pointerNumber,extension,callBack_char,argc,argv, 2);
+  LinuxThread data(api,flight,pointerRadio,pointerNumber,extension,callBack_char,argc,argv, 4); // create thread for save data
+  LinuxThread key(api,flight,pointerRadio,pointerNumber,extension,callBack_char,argc,argv, 5);
+  LinuxThread radio(api,flight,pointerRadio,pointerNumber,extension,callBack_char,argc,argv,6);  // create thread to control radio
  
   //! Setup
   int setupStatus = setup(serialDevice, api, &read,&data,&key, &radio);
@@ -145,6 +155,9 @@ int main(int argc, char *argv[])
     float speedX=0.5;
     float speedY=0.5;
     float speedZ=0.5;
+    float movex=0;
+    float movey=0;
+    float time=0;
     float desiredAngle;
     int status21;
    	curPosition = api->getBroadcastData().pos;
@@ -170,14 +183,15 @@ int main(int argc, char *argv[])
     int status7;
     int status8;
     int quarter=0;
-    float distance=0;
+    float posBeforeMove=0;
+    
     fileRadio << "Number" <<","<<"yaw"  <<","<< "radioValue" <<","<< "Position x"  <<","<< "Position y"  <<","<< "Position z"<<"\n";
     yaw=flight->getYaw();
       yaw=RAD2DEG*yaw+180;
       oldYaw=yaw;
       old=yaw;
     //moveByPositionOffset(api,flight,0,0,1,0,1500,3,10);
-    
+    if ( mode==1) {
      while (tour==0){
     cout << endl;
   cout << "| Available commands:                                            |" << endl;
@@ -293,10 +307,10 @@ switch (inputchar)
 		status6=moveByPositionOffset(api,flight,0,0,0,desiredAngle,1500,3,10);
 		usleep(1000000);
 		cout<< " If the angle is right, indicate a distance " << endl;
-		cin >> distance;
-		if (distance !=0){
-			cout << " valeur a bouger en w x :" << distance*cos(DEG2RAD*desiredAngle) << " et la valeur en y " << distance*sin(DEG2RAD*desiredAngle) << endl;
-			status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,15000000,3,30);
+		cin >> distanceMove;
+		if (distanceMove !=0){
+			cout << " valeur a bouger en w x :" << distanceMove*cos(DEG2RAD*desiredAngle) << " et la valeur en y " << distanceMove*sin(DEG2RAD*desiredAngle) << endl;
+			status7=moveByPositionOffset(api,flight,distanceMove*cos(DEG2RAD*desiredAngle),distanceMove*sin(DEG2RAD*desiredAngle),0,desiredAngle,15000000,3,30);
 			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),0,0,desiredAngle,1500,3,10);
 			//status7=moveByPositionOffset(api,flight,0,distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,1500,3,10);
 		}
@@ -344,7 +358,168 @@ switch (inputchar)
 	}
 	
 } 
-      //! Land
+     } //! Land
+     
+     if (mode ==2){    // autonomous mode
+		  cout << endl; 
+     
+  cout << "| WELCOME                                                        |" << endl;
+  cout << "|    IN                                                          |" << endl;
+  cout << "|      AUTONOMOUS                                                |" << endl;
+  cout << "|           MODE                                                 |" << endl;
+  cout << "|                                                                |" << endl;
+  cout << "|      ENJOY !!!                                                 |" << endl;
+  cout << "|                                                                |" << endl;
+  yaw=flight->getYaw();
+  moveByPositionOffset(api,flight,0,0,0.8,yaw*RAD2DEG,1500,3,10);
+		  while (tour==0){
+			  usleep(2000000); 
+
+    if(number != 0){
+		 moveByPositionOffset(api,flight,0,0,0.8,yaw*RAD2DEG-120,1500,3,10);
+		 usleep(2000000); 
+
+	}
+        oldRadioValue=radioValue;
+      number++;
+      yaw=flight->getYaw();
+      yaw=RAD2DEG*yaw+180;
+      oldYaw=yaw;
+      old=yaw;
+        while( quarter<5 ) {
+		yaw=flight->getYaw();
+		yaw=RAD2DEG*yaw+180;	
+        int status1=moveWithVelocity(api,flight,0,0,0, radialSpeed ,1500, 3, 0.1);
+        if ( oldYaw <90 && yaw >= 90){
+			cout<< " First quarter complete with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <180 && yaw >=180){
+			cout<< " Second quarter complete  with an angle of : "<< yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw <270 && yaw >= 270){
+			cout<< " Third quarter complete  with an angle of : " << yaw << endl;
+			quarter=quarter+1;
+		}
+		else if ( oldYaw>350  && yaw <=10){
+			cout<< " Fourth quarter complete  with an angle of : " << yaw<< endl;
+			quarter=quarter+1;
+		}
+		if(fmod(yaw,5)<1 && abs(yaw-old)>4 ){
+			curPosition =flight -> getPosition();
+            localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+			fileRadio <<number << "," << yaw  <<","<< radioValue <<","<< curLocalOffset.x  <<","<< curLocalOffset.y  <<","<< curLocalOffset.z<<"\n";
+			old=yaw;
+		}
+        
+        oldYaw=yaw;
+		
+	} quarter=0;
+	usleep(1000000); 
+	if ( radioValue != oldRadioValue){
+		desiredAngle=radioValue;
+		desiredAngle=360-desiredAngle;
+		cout << " radioValue in p : " << radioValue << endl;
+		//desiredAngle=85;
+		if (desiredAngle > 180){
+		 desiredAngle=desiredAngle-360;
+		}
+		oldRadioValue=radioValue;
+		status6=moveByPositionOffset(api,flight,0,0,0,desiredAngle,1500,3,10);
+		usleep(1000000);
+		
+		if (distanceMove !=0){
+			movex= distanceMove*cos(DEG2RAD*desiredAngle);
+			movey = distanceMove*sin(DEG2RAD*desiredAngle);
+			time=distanceMove/2;
+			cout << " valeur a bouger en w x :" << movex << " et la valeur en y " << movey << endl;
+			speedX = movex/time;
+			speedY = movey/time;
+			if( abs(movex) > abs(movey) ){
+				  PositionData curPosition = api->getBroadcastData().pos;
+					PositionData originPosition = curPosition;
+  DJI::Vector3dData curLocalOffset; 
+  
+  DJI::EulerAngle curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+
+  //Convert position offset from first position to local coordinates
+  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+  
+  //See how much farther we have to go
+  float32_t xOffsetRemaining = movex - curLocalOffset.x;
+  float32_t yOffsetRemaining = movey - curLocalOffset.y;
+   
+				while( abs(xOffsetRemaining) > 2 ){
+					int status3=moveWithVelocity(api,flight,speedX,speedY,0, 0 ,1500, 3, 0.1);
+					curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    curPosition = api->getBroadcastData().pos;
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+    
+    //See how much farther we have to go
+    xOffsetRemaining = movex - curLocalOffset.x;
+    yOffsetRemaining = movey - curLocalOffset.y;
+    if (keyboard =='r'){
+	   releaseControlStatus = releaseControl(api);
+	   while( keyboard != 'x'){
+	   }
+	   takeControlStatus = takeControl(api);
+         land = landing(api, flight,blockingTimeout);
+        tour=1;
+}
+				}	 
+			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,15000000,3,30);
+			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),0,0,desiredAngle,1500,3,10);
+			//status7=moveByPositionOffset(api,flight,0,distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,1500,3,10);
+			
+		}
+		if( abs(movey) > abs(movex) ){
+				  PositionData curPosition = api->getBroadcastData().pos;
+					PositionData originPosition = curPosition;
+  DJI::Vector3dData curLocalOffset; 
+  
+  DJI::EulerAngle curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+
+  //Convert position offset from first position to local coordinates
+  localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+  
+  //See how much farther we have to go
+  float32_t xOffsetRemaining = movex - curLocalOffset.x;
+  float32_t yOffsetRemaining = movey - curLocalOffset.y;
+
+				while( abs(yOffsetRemaining) > 2 ){
+					int status3=moveWithVelocity(api,flight,speedX,speedY,0, 0 ,1500, 3, 0.1);
+					curEuler = Flight::toEulerAngle(api->getBroadcastData().q);
+    curPosition = api->getBroadcastData().pos;
+    localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
+    
+    //See how much farther we have to go
+    xOffsetRemaining = movex - curLocalOffset.x;
+    yOffsetRemaining = movey - curLocalOffset.y;
+    if (keyboard =='r'){
+	   releaseControlStatus = releaseControl(api);
+	   while( keyboard != 'x'){
+	   }
+	   takeControlStatus = takeControl(api);
+         land = landing(api, flight,blockingTimeout);
+        tour=1;
+}
+				}	 
+			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,15000000,3,30);
+			//status7=moveByPositionOffset(api,flight,distance*cos(DEG2RAD*desiredAngle),0,0,desiredAngle,1500,3,10);
+			//status7=moveByPositionOffset(api,flight,0,distance*sin(DEG2RAD*desiredAngle),0,desiredAngle,1500,3,10);
+			
+		}
+		
+	}
+        
+        
+      //! Do aircraft control - Waypoint example. 
+     // wayPointMissionExample(api, waypointObj,blockingTimeout);
+	
+}
+} 
+	 }
       ackReturnData landingStatus = landing(api, flight,blockingTimeout);
     }
     else 
