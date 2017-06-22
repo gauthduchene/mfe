@@ -133,7 +133,6 @@ float32_t correlation(){
 		}
 		}
 		ms=measurements[indexMax];
-		std::cout<< " la valeur de index max " << indexMax  << "  et la valeur max de radio correspondate " << ms.measure << " pour un angle de " << ms.yaw  << endl;
 		*secondPointer=ms.yaw;
 	}
 
@@ -336,7 +335,7 @@ pos=flight2 -> getPosition();
         curPosition =flight2 -> getPosition();
 curEuler = Flight::toEulerAngle(q);
     localOffsetFromGpsOffset(curLocalOffset, &curPosition, &originPosition);
-        // std::cout<< "la valeur de la position dans le thread:" << curLocalOffset.x << "\n" ;
+      
 	//gps=flight -> 
 	// rtk
 	//rc	
@@ -372,7 +371,7 @@ curEuler = Flight::toEulerAngle(q);
 }
 void *LinuxThread::key_call(void *param)
 {	
-	cout << " le thread de callback est fonctionel " << endl;
+	
   while(true)
   {
     cin >> *key;
@@ -505,7 +504,7 @@ while(1) {
 		    avg=avg+norm;
 		}
 		avg=avg/1000;
-		//std::cout<<" valeur de la moyenne   " << avg<<std::endl;
+		
         //use a small timeout for subsequent packets
         timeout = 0.1;
 		measureFromRadio=avg;
